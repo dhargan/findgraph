@@ -7,7 +7,7 @@
 
 using namespace std;
 
-        Graph::Graph(int _numberOfPoints, int _pointLimit, bool manualSetDistance){
+        GraphFinder::GraphFinder(int _numberOfPoints, int _pointLimit, bool manualSetDistance){
             points = new int[3*_numberOfPoints];
             numberOfPoints = _numberOfPoints;
             pointLimit = _pointLimit;
@@ -56,7 +56,7 @@ using namespace std;
             }
         }
 
-        double Graph::calcDistance(int A, int B){
+        double GraphFinder::calcDistance(int A, int B){
             A++;
             B++;
             A = 3*A-3;
@@ -64,16 +64,16 @@ using namespace std;
             return sqrt(pow(points[A] - points[B],2) + pow(points[A+1] - points[B+1],2) + pow(points[A+2] - points[B+2],2));
         }
 
-        void Graph::setDistanceWith(int fromPoint, int toPoint, int dist){
+        void GraphFinder::setDistanceWith(int fromPoint, int toPoint, int dist){
             distance[fromPoint][toPoint] = dist;
             distance[toPoint][fromPoint] = dist;
         }
 
-        int Graph::getDistanceWith(int fromPoint, int toPoint){
+        int GraphFinder::getDistanceWith(int fromPoint, int toPoint){
            return distance[fromPoint][toPoint];
         }
 
-        bool Graph::graphValidation(){
+        bool GraphFinder::graphValidation(){
             bool output = true;
             for(int i = 0; i < numberOfPoints-1; i++){
                 for(int j = i+1; j < numberOfPoints; j++){
@@ -93,7 +93,7 @@ using namespace std;
             return output;
         }
 
-        void Graph::iteratePoints(int i){
+        void GraphFinder::iteratePoints(int i){
             if(points[i] == pointLimit){
                 points[i] = 0;
                 iteratePoints(i+1);
@@ -103,7 +103,7 @@ using namespace std;
             }
         }
 
-        bool Graph::isFinished(){
+        bool GraphFinder::isFinished(){
             for(int i = 0; i < numberOfPoints*3 ; i++){
                 if(points[i] != pointLimit){
                     return false;
@@ -113,11 +113,11 @@ using namespace std;
             return true;
         }
 
-        int Graph::getNumberOfPoints(){
+        int GraphFinder::getNumberOfPoints(){
             return numberOfPoints;
         }
 
-        void Graph::GenerateGraph(){
+        void GraphFinder::FindGraph(){
             cout<<"Looking for possible graph(s), please wait. This may take several minutes."<<endl;
             output.open("output.txt");
             int counter = 0;

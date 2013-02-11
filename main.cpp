@@ -29,8 +29,8 @@ int main(){
 
     input.close();
 
-    Graph* g = new Graph(values[0],values[1],false);
-    g->GenerateGraph();
+    GraphFinder* g = new GraphFinder(values[0],values[1],false);
+    g->FindGraph();
 
     return 0;
 }

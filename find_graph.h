@@ -1,7 +1,7 @@
 #ifndef FIND_GRAPH_H
 #define FIND_GRAPH_H
 
-class Graph{
+class GraphFinder{
     private:
         std::ofstream output;
         int* points;
@@ -10,7 +10,7 @@ class Graph{
         int pointLimit;
 
     public:
-        Graph(int _numberOfPoints, int _pointLimit, bool manualSetDistance = true);
+        GraphFinder(int _numberOfPoints, int _pointLimit, bool manualSetDistance = true);
 
         double calcDistance(int A, int B);
 
@@ -26,7 +26,7 @@ class Graph{
 
         int getNumberOfPoints();
 
-        void GenerateGraph();
+        void FindGraph();
 
 };
 
