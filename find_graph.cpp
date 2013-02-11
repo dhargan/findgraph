@@ -7,7 +7,7 @@
 
 using namespace std;
 
-        Graph::Graph(int _numberOfPoints, int _pointLimit){
+        Graph::Graph(int _numberOfPoints, int _pointLimit, bool manualSetDistance){
             points = new int[3*_numberOfPoints];
             numberOfPoints = _numberOfPoints;
             pointLimit = _pointLimit;
@@ -21,11 +21,38 @@ using namespace std;
             for(int i = 0; i < 3*numberOfPoints; i++){
                 points[i] = 0;
             }
-            for(int i = 0; i < numberOfPoints-1; i++){
-                for(int j = i+1; j < numberOfPoints; j++){
-                    cout<<"Please enter the distance between point #"<<i<<" and point #"<<j<<endl;
-                    cin>>distance[i][j];
+
+            if(manualSetDistance){
+                for(int i = 0; i < numberOfPoints-1; i++){
+                    for(int j = i+1; j < numberOfPoints; j++){
+                        cout<<"Please enter the distance between point #"<<i<<" and point #"<<j<<endl;
+                        cin>>distance[i][j];
+                    }
                 }
+            }
+
+            else{
+                ifstream input;
+                input.open("graph.txt");
+                if(input.is_open()){
+                    string line;
+                    string value;                    
+                    size_t pos;
+
+                    for(int i = 0; i < numberOfPoints-1; i++){
+                        for(int j = i+1; j < numberOfPoints; j++){
+                            getline(input,line);
+                            pos = line.find("=");
+                            pos++;
+                            value = line.substr(pos);
+                            value.erase(remove_if(value.begin(), value.end(), (int(*)(int))isspace), value.end());
+                            distance[i][j] = atoi(value.c_str());                            
+                        }
+                    }
+                }
+
+                input.close();
+
             }
         }
 
@@ -50,9 +77,11 @@ using namespace std;
             bool output = true;
             for(int i = 0; i < numberOfPoints-1; i++){
                 for(int j = i+1; j < numberOfPoints; j++){
-                    if(calcDistance(i,j) != distance[i][j]){
-                        output = false;
-                        break;
+                    if(distance[i][j] != -1){
+                        if(calcDistance(i,j) != distance[i][j]){
+                            output = false;
+                            break;
+                        }
                     }
                 }
 

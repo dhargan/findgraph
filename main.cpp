@@ -15,7 +15,6 @@ int main(){
         string line;
         string value;
         int lineNo = 0;
-        int temp = 0;
         size_t pos;
         while(input.good()){
             getline(input,line);
@@ -30,7 +29,7 @@ int main(){
 
     input.close();
 
-    Graph* g = new Graph(values[0],values[1]);
+    Graph* g = new Graph(values[0],values[1],false);
     g->GenerateGraph();
 
     return 0;

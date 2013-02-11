@@ -10,7 +10,7 @@ class Graph{
         int pointLimit;
 
     public:
-        Graph(int _numberOfPoints, int _pointLimit);
+        Graph(int _numberOfPoints, int _pointLimit, bool manualSetDistance = true);
 
         double calcDistance(int A, int B);
 
