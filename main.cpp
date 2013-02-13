@@ -3,6 +3,7 @@
 #include <string>
 #include <algorithm>
 #include "find_graph.h"
+#include "generate_graph.h"
 
 using namespace std;
 
@@ -29,6 +30,8 @@ int main(){
 
     input.close();
 
+    GraphGenerator* gg = new GraphGenerator(values[0],values[1],6);
+    gg->GenerateGraph();
     GraphFinder* g = new GraphFinder(values[0],values[1],false);
     g->FindGraph();
 
