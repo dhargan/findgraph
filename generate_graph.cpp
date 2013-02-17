@@ -1,4 +1,5 @@
 #include <iostream>
+<<<<<<< Updated upstream
 #include <vector>
 #include <fstream>
 #include <string>
@@ -9,10 +10,16 @@
 #include <boost/graph/connected_components.hpp>
 #include <ctime>
 #include "generate_graph.h"
+=======
+#include <boost/graph/adjacency_list.hpp>
+#include <boost/graph/connected_components.hpp>
+#include "generate_graph.h";
+>>>>>>> Stashed changes
 
 using namespace std;
 using namespace boost;
 
+<<<<<<< Updated upstream
 typedef adjacency_list <vecS, vecS, undirectedS> Graph;
 
 GraphGenerator::GraphGenerator(int _numberOfVertices, int _maximumDistance, double _verticeRange){
@@ -114,3 +121,11 @@ void GraphGenerator::GenerateGraph(){
 
     graph_output.close();
 }
+=======
+GraphGenerator::GraphGenerator(int _numberOfVertices, int _maxDistance){
+    numberOfVertices = _numberOfVertices;
+}
+
+
+
+>>>>>>> Stashed changes
