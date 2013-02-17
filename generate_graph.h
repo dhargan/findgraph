@@ -1,8 +1,6 @@
 #ifndef GENERATE_GRAPH_H
 #define GENERATE_GRAPH_H
 
-<<<<<<< Updated upstream
-
 
 class Point{
     private:
@@ -41,20 +39,5 @@ class GraphGenerator{
 
 };
 
-#endif // GENERATE_GRAPH_H
-=======
-class GraphGenerator{
-    private:
-        int numberOfVertices;
-        int maxDistance;
-        int verticeRange = 5;
-
-    public:
-        GraphGenerator(int _numberOfVertices, int _maxDistance){
-
-        }
-}
-
 
 #endif
->>>>>>> Stashed changes

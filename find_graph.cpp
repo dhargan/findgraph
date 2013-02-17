@@ -46,7 +46,7 @@ using namespace std;
                             pos++;
                             value = line.substr(pos);
                             value.erase(remove_if(value.begin(), value.end(), (int(*)(int))isspace), value.end());
-                            distance[i][j] = atoi(value.c_str());                            
+                            distance[i][j] = float(atof(value.c_str())*10.0)/10.0;
                         }
                     }
                 }
@@ -74,11 +74,14 @@ using namespace std;
         }
 
         bool GraphFinder::graphValidation(){
+            double d;
             bool output = true;
             for(int i = 0; i < numberOfPoints-1; i++){
                 for(int j = i+1; j < numberOfPoints; j++){
                     if(distance[i][j] != -1){
-                        if(calcDistance(i,j) != distance[i][j]){
+                        d = calcDistance(i,j);
+                        d = floor(d*10.0)/10.0;
+                        if(d != distance[i][j]){
                             output = false;
                             break;
                         }
