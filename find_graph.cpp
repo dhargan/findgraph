@@ -144,9 +144,9 @@ using namespace std;
             double target;            
 
             while(!isFinished()){                                
-                target = (totalPoint * (mult/10));
+                target = (totalPoint * (mult/100));
                 if(curr <= target && target < curr + 1)  {
-                    cout<<"%"<<mult*10<<" completed."<<endl;
+                    cout<<"%"<<mult<<" completed."<<endl;
                     mult++;
                 }
 
