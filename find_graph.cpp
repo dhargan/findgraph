@@ -122,8 +122,7 @@ using namespace std;
 
         void GraphFinder::FindGraph(){
             cout<<"Looking for possible graph(s), please wait. This may take several minutes."<<endl;
-            output.open("output.txt");
-            int counter = 0;
+            output.open("output.txt");            
             int graphsFound = 0;
 
             output<<"Possible complete graph(s) with "<<numberOfPoints<<" points."<<endl;
@@ -139,18 +138,30 @@ using namespace std;
             output<<endl;
             output<<"----------------------------------------------------------------------------------------"<<endl;
 
-            while(!isFinished()){
-                 if(graphValidation()){
+            double totalPoint = pow((pointLimit+1)*(pointLimit+1)*(pointLimit+1),numberOfPoints);
+            double curr = 0;
+            double mult = 1;            
+            double target;            
+
+            while(!isFinished()){                                
+                target = (totalPoint * (mult/10));
+                if(curr <= target && target < curr + 1)  {
+                    cout<<"%"<<mult*10<<" completed."<<endl;
+                    mult++;
+                }
+
+                if(graphValidation()){
                     output<<"Graph #"<<graphsFound<<endl;
                     for(int i = 0; i < 3*numberOfPoints; i+=3){
                         output<<"X = "<<points[i]<<" Y = "<<points[i+1]<<" Z = "<<points[i+2]<<endl;
                     }
                     output<<"----------------------------------------------------------------------------------------"<<endl;
                     graphsFound++;
-                    cout<<graphsFound<<" graph(s) found. Looking for more..."<<endl;
+                    //out<<graphsFound<<" graph(s) found. Looking for more..."<<endl;
                 }
 
                 iteratePoints();
+                curr++;                
             }
 
             cout<<"Finished! "<<graphsFound<<" graph(s) found!"<<endl;
