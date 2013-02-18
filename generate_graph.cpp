@@ -1,5 +1,4 @@
 #include <iostream>
-<<<<<<< Updated upstream
 #include <vector>
 #include <fstream>
 #include <string>
@@ -10,16 +9,13 @@
 #include <boost/graph/connected_components.hpp>
 #include <ctime>
 #include "generate_graph.h"
-=======
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/connected_components.hpp>
-#include "generate_graph.h";
->>>>>>> Stashed changes
+#include "generate_graph.h"
 
 using namespace std;
 using namespace boost;
 
-<<<<<<< Updated upstream
 typedef adjacency_list <vecS, vecS, undirectedS> Graph;
 
 GraphGenerator::GraphGenerator(int _numberOfVertices, int _maximumDistance, double _verticeRange){
@@ -104,11 +100,14 @@ void GraphGenerator::GenerateGraph(){
     }
 
     if(isConnected){
+        double d;
         graph_output.open("graph.txt");
         for(int i = 0; i < numberOfVertices -1; i++){
             for(int j = i+1; j < numberOfVertices; j++){
                 if(calcDistance(i,j) <= verticeRange){
-                    graph_output<<i<<" "<<j<<" = "<<calcDistance(i,j)<<endl;
+                    d = calcDistance(i,j);
+                    d = floor(d*10.0)/10.0;
+                    graph_output<<i<<" "<<j<<" = "<<d<<endl;
                 }else{
                     graph_output<<i<<" "<<j<<" = "<<"-1"<<endl;
                 }
@@ -121,11 +120,3 @@ void GraphGenerator::GenerateGraph(){
 
     graph_output.close();
 }
-=======
-GraphGenerator::GraphGenerator(int _numberOfVertices, int _maxDistance){
-    numberOfVertices = _numberOfVertices;
-}
-
-
-
->>>>>>> Stashed changes
